@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>任务三：三栏式布局</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		body{
+			font-size: 16px;
+		}
+
+		img{
+			width: 80px;
+			height: 80px;
+		}
+
+		.container{
+			margin: 20px;
+			padding: 0 162px 0 242px;
+			background-color: #eee;
+			border: 1px solid #999;
+			position: relative;
+		}
+
+		.article{
+			width: 100%;
+			line-height: 1.8em;
+			letter-spacing: 0.05em;
+			text-indent: 2em;
+			border: 1px solid #999;
+			background-color: #fff;
+			margin: 20px 0;
+		}
+
+		.article>div{
+			padding: 20px;
+		}
+
+		.aside{
+			width: 200px;
+			position: absolute;
+			top: 20px;
+    		left: 20px;
+			border: 1px solid #999;
+			background-color: #fff;
+		}
+
+		.aside img{
+			padding: 20px;
+		}
+
+		.aside span{
+			position: absolute;
+			top: 20px;
+		}
+
+		.section{
+			width: 120px;
+			border: 1px solid #999;
+			background-color: #fff;
+			position: absolute;
+			top: 20px;
+    		right: 20px;
+		}
+
+		.section img{
+			padding: 20px 20px 0 20px; 
+		}
+
+		.section img:last-child{
+			padding-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<article class="article">
+			<div>
+				<p>外面的太阳很暖，只不过已经开始渐入深秋，温度也随之开始微凉了起来。枝丫上的叶子，有些已经开始泛黄，只不过感觉似乎还在留恋的样子，迟迟的不肯下来。这个城市夜晚，是不是总会让你感觉少了一人？ </p>
+				<p>生活总是会有许许多多的烦恼，各式各样，有时候连自己都搞不清楚到底是因为什么。常常埋怨自己为什么要长大，就像小时候埋怨自己为什么长不大一样。矛盾似乎总是伴随着成长。总想背起行囊远走他乡，却又舍不得眼前的风景，于是便被蒙蔽了双眼，锁住了双脚。遥看远方，青山之后的世界是不是精彩了许多。车水马龙处应该人来人往，一切都在透漏着繁华。</p>
+				<p>有时候想找一个聊的来的朋友很难，即使你们相识了很久。其实找到一个可以聊的来的朋友也很简单，也许就在一次主动的搭讪之后，便会亲近起来。周围总是这样会有很多的惊喜，同时也许会有很多的惊吓。想要生活变得简单些，还是有些许困难，谁也无法保证接下来会发生什么。</p>
+				<p>无事的有时候，总是喜欢把自己锁在房间里，认真的玩一会游戏或是认真的看一本书。不去在乎窗外的世界会有什么，管他又会发生什么，这与我又有什么关系？</p>
+				<p>无事的有时候，总是喜欢把自己锁在房间里，认真的玩一会游戏或是认真的看一本书。不去在乎窗外的世界会有什么，管他又会发生什么，这与我又有什么关系？</p>
+			</div>
+		</article>
+
+		<aside class="aside">
+			<img  class="aside-logo" src="https://cdn.pixabay.com/photo/2017/08/19/10/00/eagle-2657888__340.jpg" alt="尖刀">
+			<span class="aside-name">尖刀</span>
+		</aside>
+
+		<section class="section">
+			<img src="https://cdn.pixabay.com/photo/2016/04/06/01/51/fuchs-1310840__340.jpg">
+			<img src="https://cdn.pixabay.com/photo/2017/04/11/21/34/giraffe-2222908__340.jpg">
+			<img src="https://cdn.pixabay.com/photo/2014/01/10/09/04/squirrel-241521__340.jpg">
+			<img src="https://cdn.pixabay.com/photo/2015/08/31/13/18/bird-915445__340.jpg">
+		</section>
+
+
+
+	</div>
+</body>
+</html>
