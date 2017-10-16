@@ -137,4 +137,19 @@ body{
 
 .carous-right-smallWrap>div>p:last-child{
 	font-size: 12px;
+	color: #ccc;
+}
+
+
+/*summary*/
+.summary{
+	font-size: 12px;
+	width: 641px;
+	overflow: hidden;
+}
+
+.summary section{
+	float: left;
+	width: 28%;
+	margin-right: 30px;
 }
