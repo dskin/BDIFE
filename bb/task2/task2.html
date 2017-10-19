@@ -33,6 +33,7 @@ var aqiData = [
   */
   var aqiList = document.getElementById("aqi-list");
   var dirty = [];
+  var fragment = document.createDocumentFragment();
 
   var dirty = aqiData.filter(function(item,index,array){
     if(item[1] > 60){
@@ -49,8 +50,9 @@ var aqiData = [
       var li = document.createElement("li");
       var index = index+1;
       li.innerText = "第" + index + "名：" + item[0] + "，" + item[1];
-      aqiList.appendChild(li);
+      fragment.appendChild(li);
     })
+    aqiList.appendChild(fragment);
   };
 
   insertToDOM(dirty);
