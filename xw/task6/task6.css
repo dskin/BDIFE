@@ -177,6 +177,7 @@ body{
 .carousel-right-number{
 	color: #75b86b;
 	font-size: 100px;
+	transform: skewX(-10deg);
 }
 
 .carous-right-smallWrap{
@@ -325,7 +326,7 @@ body{
 
 .news-right-catalogWrap{
 	width: 459px;
-	height: 348px;
+	height: 318px;
 	background-color: #EEEED6;
 	margin-top: 20px;
 }
@@ -371,7 +372,6 @@ body{
 }
 
 .news-right-words{
-	margin-top: 15px;
 	overflow: hidden;
 }
 
@@ -417,15 +417,32 @@ body{
 	padding-top: 5px;
 }
 
-
-
 .news-right-wordsRight p{
 	font-size: 14px;
 	color: #5a5a5b;
 	font-family: 宋体;
 	font-style: italic;
-	margin-right: 30px;
-	line-height: 1.5em;
+	margin-right: 10px;
+	line-height: 28px;
+}
+
+.bigSize{
+	font-size: 72px;
+	color: #d45d5c;
+	height: 2px;
+	font-style: normal;
+}
+
+.bigSize:first-child{
+	float: left;
+	margin-top: 20px;
+	margin-left: -40px;
+}
+
+.bigSize:last-child{
+	float: right;
+	margin-right: -30px;
+	margin-top: 20px;
 }
 
 
@@ -435,4 +452,11 @@ body{
 	margin-top: 20px;
 	border-top: 1px solid #938e8c;
 	width: 892px;
+	height: 51px;
+}
+
+.footer p{
+	float: right;
+	color: #d4565c;
+	font-family: 黑体;
 }
