@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>任务四：基础JavaScript练习（一）</title>
+    </head>
+    <body>
+        <div style="display:flex;align-items:baseline ;justify-content:center;margin-top:20px;height:500px;">
+            <input id="inputTx" type="text">
+            <button id="leftIn">左侧入</button>
+            <button id="rightIn">右侧入</button>
+            <button id="leftOut">左侧出</button>
+            <button id="rightOut">右侧出</button>
+            <div id="el">
+
+            </div>
+        </div>
+
+        <script>
+            var inputTx = document.getElementById('inputTx');
+            var buttons = document.getElementsByTagName('button');
+            var leftIn = document.getElementById('leftIn');
+            var rightIn = document.getElementById('rightIn');
+            var leftOut = document.getElementById('leftOut');
+            var rightOut = document.getElementById('rightOut');
+            var el = document.getElementById('el');
+
+            // 获取输入值
+            var getInputValue = function(){
+                if(inputTx.value){
+                    return inputTx.value;                    
+                }else{
+                    alert("请先输入值");
+                }
+            }
+
+            var arr = [];
+            for(var i = 0; i < buttons.length; i++){
+                var a = buttons[i];
+                buttons[i].addEventListener('click',function(){
+                    if(a.id == 'leftIn'){
+                        arr.unshift(getInputValue());
+                    }
+                    else if(a.id == 'rightIn'){
+                        arr.push(getInputValue());
+                    }
+                    else if(a.id == 'leftOut'){
+                        arr.shift();
+                    }
+                    else if(a.id == 'rightOut'){
+                        arr.pop();
+                    }
+                },false)
+            }
+
+        </script>
+    </body>
+</html>
