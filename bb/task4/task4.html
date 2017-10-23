@@ -4,28 +4,27 @@
         <title>任务四：基础JavaScript练习（一）</title>
     </head>
     <body>
-        <div style="display:flex;align-items:baseline ;justify-content:center;margin-top:20px;height:500px;">
-            <input id="inputTx" type="text">
-            <button id="leftIn">左侧入</button>
-            <button id="rightIn">右侧入</button>
-            <button id="leftOut">左侧出</button>
-            <button id="rightOut">右侧出</button>
-            <div id="el">
-
+        <div style="margin-top:20px;height:500px;">
+            <div>
+                <input id="inputTx" type="text">
+                <button id="leftIn">左侧入</button>
+                <button id="rightIn">右侧入</button>
+                <button id="leftOut">左侧出</button>
+                <button id="rightOut">右侧出</button>
             </div>
+            <div id="result"></div>
         </div>
 
         <script>
-            var inputTx = document.getElementById('inputTx');
-            var buttons = document.getElementsByTagName('button');
-            var leftIn = document.getElementById('leftIn');
-            var rightIn = document.getElementById('rightIn');
-            var leftOut = document.getElementById('leftOut');
-            var rightOut = document.getElementById('rightOut');
-            var el = document.getElementById('el');
+            // 公用对象
+            var o = {
+                result: document.getElementById('result'),
+                arr: [],
+            }
 
             // 获取输入值
             var getInputValue = function(){
+                var inputTx = document.getElementById('inputTx');
                 if(inputTx.value){
                     return inputTx.value;                    
                 }else{
@@ -33,24 +32,64 @@
                 }
             }
 
-            var arr = [];
-            for(var i = 0; i < buttons.length; i++){
-                var a = buttons[i];
-                buttons[i].addEventListener('click',function(){
-                    if(a.id == 'leftIn'){
-                        arr.unshift(getInputValue());
-                    }
-                    else if(a.id == 'rightIn'){
-                        arr.push(getInputValue());
-                    }
-                    else if(a.id == 'leftOut'){
-                        arr.shift();
-                    }
-                    else if(a.id == 'rightOut'){
-                        arr.pop();
-                    }
-                },false)
+            // 事件监听
+            var addEvent = function(){
+                var buttons = document.getElementsByTagName('button');
+                for(var i = 0; i < buttons.length; i++){
+                    var a = buttons[i];
+                    a.addEventListener('click',function(m){
+                        var b = m.currentTarget.id;
+                        var c = getInputValue();
+
+                        if(b == 'leftIn'){
+                            o.arr.unshift(c);
+                            show(c,'LI');
+                        }
+                        else if(b == 'leftOut'){
+                            // alert("已弹出:" + o.arr[0]);
+                            o.arr.shift();
+                            show(o.result.firstChild);
+                        }
+                        else if(b == 'rightIn'){
+                            o.arr.push(c);
+                            show(c,'RI');
+                        }
+                        else if(b == 'rightOut'){
+                            // alert("已弹出:" + o.arr[o.arr.length - 1]);
+                            o.arr.pop();
+                            show(o.result.lastChild);
+                        }
+                    },false)
+                }
             }
+
+            // 页面渲染,el为渲染的参数，当其为DOM元素对象时，将其从页面删除；当其为字符串LI或RI，将其左插或右插进页面DOM结构
+            var show = function(el,whichIn){
+               if(typeof(el) == 'object'){
+                   o.result.removeChild(el);
+               }else if(whichIn == 'LI'){
+                   var span = insert(el);
+                   o.result.insertBefore(span,o.result.firstChild)
+               }else if(whichIn == 'RI'){
+                   var span = insert(el);
+                   o.result.appendChild(span);
+               }
+            }
+
+            // DOM插入函数
+            var insert = function(el){
+                var span = document.createElement("span");
+                span.style = "display: inline-block; width: 50; height: 50; background-color: red; margin: 10px ";
+                span.innerText = el;
+                return span;
+            }
+
+            // 主函数
+            var main = function(){
+                addEvent();
+            }
+
+            main();
 
         </script>
     </body>
