@@ -4,7 +4,7 @@
         <title>任务四：基础JavaScript练习（一）</title>
     </head>
     <body>
-        <div style="margin-top:20px;height:500px;">
+        <div style="margin-top:20px;text-align:center">
             <div>
                 <input id="inputTx" type="text">
                 <button id="leftIn">左侧入</button>
@@ -46,18 +46,18 @@
                             show(c,'LI');
                         }
                         else if(b == 'leftOut'){
-                            // alert("已弹出:" + o.arr[0]);
-                            o.arr.shift();
+                            var leftShifted = o.arr.shift();
                             show(o.result.firstChild);
+                            alert("左侧已弹出：" + leftShifted);
                         }
                         else if(b == 'rightIn'){
                             o.arr.push(c);
                             show(c,'RI');
                         }
                         else if(b == 'rightOut'){
-                            // alert("已弹出:" + o.arr[o.arr.length - 1]);
-                            o.arr.pop();
+                            var rightPoped = o.arr.pop();
                             show(o.result.lastChild);
+                            alert("右侧已弹出：" + rightPoped);
                         }
                     },false)
                 }
