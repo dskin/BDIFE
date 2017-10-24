@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>任务五：基础JavaScript练习（二）</title>
+    </head>
+    <body>
+        <div style="margin-top:20px;text-align:center">
+            <div>
+                <input id="inputTx" type="text">
+                <button id="leftIn">左侧入</button>
+                <button id="rightIn">右侧入</button>
+                <button id="leftOut">左侧出</button>
+                <button id="rightOut">右侧出</button>
+                <button id="sort">排序</button>
+            </div>
+            <div id="result" style="margin-top: 50px"></div>
+        </div>
+
+        <script>
+            // 公用对象
+            var o = {
+                result: document.getElementById('result'),
+                arr: [],
+                sort: document.getElementById('sort'),
+            }
+
+            // 获取输入值
+            var getInputValue = function(){
+                var inputTx = document.getElementById('inputTx');
+                if(Number(inputTx.value) >=10 && Number(inputTx.value) <= 100){
+                    return inputTx.value; 
+                }else{
+                    alert("输入不合法，请输入值或输入的值保持在10-100之间")
+                }
+            }
+
+            // 事件监听
+            var addEvent = function(){
+                var buttons = document.getElementsByTagName('button');
+                for(var i = 0; i < buttons.length; i++){
+                    var a = buttons[i];
+                    a.addEventListener('click',function(m){
+                        var b = m.currentTarget.id;
+                        var c = getInputValue();
+
+                        if(b == 'leftIn'){
+                            c ? o.arr.unshift(c) : false;
+                            c ? show(c,'LI') : false;
+                            clear();
+                        }
+                        else if(b == 'leftOut'){
+                            var leftShifted = o.arr.shift();
+                            show(o.result.firstChild);
+                            alert("左侧已弹出：" + leftShifted);
+                            clear();
+                        }
+                        else if(b == 'rightIn'){
+                            c ? o.arr.push(c) : false;
+                            c ? show(c,'RI') : false;
+                            clear();
+                        }
+                        else if(b == 'rightOut'){
+                            var rightPoped = o.arr.pop();
+                            show(o.result.lastChild);
+                            alert("右侧已弹出：" + rightPoped);
+                            clear();
+                        }
+                        else if(b == 'sort'){
+                            sort(o.arr);
+                            show(o.arr);
+                        }
+                    },false)
+                }
+            }
+
+            // 页面渲染,el为渲染的参数，当其为DOM元素对象时，将其从页面删除；当其为字符串LI或RI，将其左插或右插进页面DOM结构
+            var show = function(el,whichIn){
+               if(typeof(el) == 'object'){
+                   o.result.removeChild(el);
+               }else if(whichIn == 'LI'){
+                    var span;
+                    result.childNodes.length<=59 ? (
+                        span = insert(el),
+                        o.result.insertBefore(span,o.result.firstChild)
+                    ) : (
+                        alert("子元素最多只能有60个")
+                    );
+                   
+                   
+               }else if(whichIn == 'RI'){
+                    var span;
+                    result.childNodes.length<=59 ? (
+                        span = insert(el),
+                        o.result.appendChild(span)
+                    ) : (
+                        alert("子元素最多只能有60个")
+                    );
+               }
+            }
+
+            // DOM插入函数
+            var insert = function(el){
+                var span = document.createElement("span");
+                span.style = "display: inline-block; width: 20; background-color: red; margin: 2px; height: " + el +　"px";
+                return span;
+            }
+
+            // 清除input值
+            var clear = function(){
+                var inputTx = document.getElementById('inputTx');
+                inputTx.value = "";
+            }
+
+            // 排序算法
+            // 插入排序
+            var sort = function(arr){
+                for(var i = 0; i < arr.length; i++){
+                    for(var j = i; j > 0 && arr[j]<arr[j-1]; j--){
+                        var temp = arr[j];
+                        arr[j] = arr[j-1];
+                        arr[j-1] = temp;
+                    }
+                }
+                o.arr = arr;
+            }
+
+            // 主函数
+            var main = function(){
+                addEvent();
+            }
+
+            main();
+
+        </script>
+    </body>
+</html>
