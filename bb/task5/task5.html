@@ -41,9 +41,9 @@
                     var a = buttons[i];
                     a.addEventListener('click',function(m){
                         var b = m.currentTarget.id;
-                        var c = getInputValue();
 
                         if(b == 'leftIn'){
+                            var c = getInputValue();
                             c ? o.arr.unshift(c) : false;
                             c ? show(c,'LI') : false;
                             clear();
@@ -55,6 +55,7 @@
                             clear();
                         }
                         else if(b == 'rightIn'){
+                            var c = getInputValue();
                             c ? o.arr.push(c) : false;
                             c ? show(c,'RI') : false;
                             clear();
@@ -67,11 +68,18 @@
                         }
                         else if(b == 'sort'){
                             sort(o.arr);
-                            show(o.arr);
+                            while (o.result.firstChild) {
+                                o.result.removeChild(o.result.firstChild);
+                            }
+                            for(var i = 0; i < o.arr.length; i++){
+                                show(o.arr[i],'RI');
+                            }
                         }
                     },false)
                 }
             }
+
+
 
             // 页面渲染,el为渲染的参数，当其为DOM元素对象时，将其从页面删除；当其为字符串LI或RI，将其左插或右插进页面DOM结构
             var show = function(el,whichIn){
@@ -114,8 +122,8 @@
             // 排序算法
             // 插入排序
             var sort = function(arr){
-                for(var i = 0; i < arr.length; i++){
-                    for(var j = i; j > 0 && arr[j]<arr[j-1]; j--){
+                for(var i = 1; i <= arr.length; i++){
+                    for(var j = i; j > 0 && Number(arr[j])<Number(arr[j-1]); j--){
                         var temp = arr[j];
                         arr[j] = arr[j-1];
                         arr[j-1] = temp;
