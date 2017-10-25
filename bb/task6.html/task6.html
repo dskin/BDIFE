@@ -1,0 +1,166 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>任务六：基础JavaScript练习（三）</title>
+        <style>
+            .blackBorder{
+                border: 3px solid #111;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="margin-top:20px;text-align:center">
+            <div>
+                <textarea id="inputTx" cols="30" rows="10" placeholder="请输入值，多个值之间请用空格或逗号或句号加以分隔"></textarea>
+                </br>
+                <button id="leftIn">左侧入</button>
+                <button id="rightIn">右侧入</button>
+                <button id="leftOut">左侧出</button>
+                <button id="rightOut">右侧出</button>
+                <div style="margin-top:10px;">
+                    <input id="searchInput" type="text">
+                    <button id="searchButton">搜索</button>
+                </div>
+            </div>
+            <div id="result"></div>
+        </div>
+
+        <script>
+            // 公用对象
+            var o = {
+                arr: [],
+            }
+
+            // 获取输入值，返回输入值构成的数组
+            var getInputValue = function(){
+                if(inputTx.value){
+                    var pattern = /\s|,|、|，/;
+                    var arr = inputTx.value.split(pattern);
+                    arr.forEach(function(item,index,arr){
+                        if(!item){
+                            arr.splice(index,1);
+                        }
+                    })
+                    return arr;
+                }else{
+                    alert("请先输入值");
+                }
+            }
+
+            // 事件监听
+            var addEvent = function(){
+                var buttons = document.getElementsByTagName('button');
+                // 点击事件
+                for(var i = 0; i < buttons.length; i++){
+                    var a = buttons[i];
+                    a.addEventListener('click',function(m){
+                        var b = m.currentTarget.id;
+
+                        // 左侧入事件
+                        if(b == 'leftIn'){
+                            var c = getInputValue();
+                            if(c){
+                                // 更新数组信息
+                                o.arr = c.concat(o.arr);
+                                // 更新视图变化
+                                c.forEach(function(item,index,array){
+                                    show(array[array.length-index-1],'LI');
+                                })
+                            }
+                            clear(inputTx);
+                        }
+                        // 左侧出事件
+                        else if(b == 'leftOut'){
+                            var leftShifted = o.arr.shift();
+                            show(result.firstChild);
+                            alert("左侧已弹出：" + leftShifted);
+                            clear(inputTx);
+                        }
+                        // 右侧入事件
+                        else if(b == 'rightIn'){
+                            var c = getInputValue();
+                            if(c){
+                                // 更新数组信息
+                                o.arr = o.arr.concat(c);
+                                // 更新视图变化
+                                c.forEach(function(item,index,array){
+                                    show(item,'RI');
+                                })
+                            }
+                            clear(inputTx);
+                        }
+                        // 右侧出事件
+                        else if(b == 'rightOut'){
+                            var rightPoped = o.arr.pop();
+                            show(result.lastChild);
+                            alert("右侧已弹出：" + rightPoped);
+                            clear(inputTx);
+                        }
+                        // 搜索事件
+                        else if(b == 'searchButton'){
+                            var rc = result.childNodes;
+                            for(var i = 0; i < rc.length; i++){
+                                if(rc[i].className == "blackBorder"){
+                                    rc[i].removeAttribute('class');
+                                }
+                            }
+                            search();
+                            clear(searchInput);
+                        }
+                    },false)
+                }
+            }
+
+            // 页面渲染,el为渲染的参数，当其为DOM元素对象时，将其从页面删除；当其为字符串LI或RI，将其左插或右插进页面DOM结构
+            var show = function(el,whichIn){
+               if(typeof(el) == 'object'){
+                   result.removeChild(el);
+               }else if(whichIn == 'LI'){
+                   var span = insert(el);
+                   result.insertBefore(span,result.firstChild)
+               }else if(whichIn == 'RI'){
+                   var span = insert(el);
+                   result.appendChild(span);
+               }
+            }
+
+            // DOM插入函数
+            var insert = function(el){
+                var span = document.createElement("span");
+                span.style = "display: inline-block; width: 50px; height: 50px; line-height: 50px;color: #fff; background-color: #ff2600; margin: 10px; vertical-align: middle";
+                span.innerText = el;
+                return span;
+            }
+
+            // 清除input值
+            var clear = function(input){
+                input.value = "";
+            }
+
+            // 搜索匹配
+            var search = function(){
+                var searchInValue = searchInput.value;
+                var rc = result.childNodes;
+                
+                o.arr.forEach(function(item,index,array){
+                    if(item.indexOf(searchInValue) >= 0){
+                        rc[index].className = "blackBorder";
+                    }
+                })
+            }
+
+            // 主函数
+            var main = function(){
+                var result = document.getElementById('result');
+                var searchInput = document.getElementById("searchInput");
+                var inputTx = document.getElementById('inputTx');
+                
+                console.log(result)
+                addEvent();
+            }
+
+            main();
+
+        </script>
+    </body>
+</html>
