@@ -17,26 +17,57 @@ body{
 /* header部分 */
 header{
     height: 50px;
-    width: 95%；
 }
 
 .header-logo{
     float: left;
+    height: 50px;
+    margin-left: 50px;
+    font-size: 21px;
+    color: #393a3a;
+    display: flex;
+    align-items: center;
+}
+
+.header-logo span{
+    margin-left: 5px;
 }
 
 .header-nav{
     float: right;
+    margin-right: 50px;
+    font-size: 14px;
+    color: #787b83;
 }
 
 .header-nav ul{
     overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
 .header-nav ul li{
     float: left;
+    height: 46px;
+    width: 70px;
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.header-nav ul li:hover{
+    border-bottom: 3px solid #EE524F;
+    color: #EE524F;
+    cursor: pointer;
+}
 
+.header-register img{
+    height: 19.2px;
+    width: 19.2px;
+    margin-right: 5px;
+    vertical-align: bottom;
+}
 
 
 /* main部分 */
@@ -58,29 +89,193 @@ header{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    margin-left: 120px;
+    color:#fffdfd;
 }
+
+.main-text-one{
+    font-size: 60px;
+    font-family: 微软雅黑;
+    margin-bottom: 25px;
+}
+
+.main-text-two{
+    font-size: 21px;
+    font-family: 微软雅黑;
+    margin-bottom: 65px;
+}
+
+.main-text button{
+    width: 330px;
+    height: 60px;
+    background-color: #e7504d;
+    color: #fff; 
+    border: none;
+    outline: none;
+    font-size: 30px;
+    letter-spacing: 5px;
+}
+
+.main-text button:hover{
+    cursor: pointer;
+}
+
 
 /* 第一部分 */
 .part1{
     height: 250px;
+    color: #767777;
+    font-size: 14px;
 }
+
+.part1 li{
+    float: left;
+    width: 25%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.part1 li img{
+    margin-bottom: 50px;
+}
+
+.part1 li p{
+    height: 20%;
+    width: 100%;
+    border-right: 2px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.part1 li:last-child p{
+    border-right: none;
+}
+
 
 /* 第二部分 */
 .part2{
     height: 360px;
     background-color: #ededec;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
+.part2 p{
+    color: #323333;
+    font-size: 54px;
+    margin-top: 50px;
+    opacity: 0.5;
+    letter-spacing: 5px;
+}
+
+
+/* 第三部分 */
 .part3{
     height: 340px;
-    background-color: #123;
+    background-image: url(imgs/part3-back.jpg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 2px;
 }
 
+.part3-p1{
+    color: #fff;
+    font-size: 21px;
+    margin-bottom: 20px;
+}
+
+.part3-p2{
+    color: #fff;
+    font-size: 12px;
+    margin-bottom: 50px;
+}
+
+.part3-select{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.part3-item{
+    width: 240px;
+    height: 35px;
+    margin-left: 30px;
+}
+
+.part3-subSelect{
+    -webkit-appearance: none;
+    outline-color: #be4e48;
+    background: url(imgs/part3-select.png) #fff no-repeat right center;
+    padding-left: 10px;
+    color: #a8aaaa;
+    font-size: 12px;
+}
+
+.part3-search{
+    outline: none;
+    border: none;
+    color: #fff;
+    background-color: #be4e48;
+    font-size: 14px;
+    letter-spacing: 10px;
+}
+
+
+/* 第四部分 */
 .part4{
     height: 600px;
-    background-color: #258;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.part4>div{
+    margin-left: 35px;
+    text-align: center;
+}
+
+.part4-imgWrap{
+    border: 1px solid #ccc;
+    height: 340px;
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.part4-p1{
+    width: 100%;
+    margin-top: 10px;
+    color: #333;
+    font-size: 14px;
+}
+
+.part4-p2{
+    width: 100%;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #9f9f9f;
+}
+
+.part4-sh1{
+    letter-spacing: 30px;
+    font-size: 19px;
+    text-align: right;
+}
+
+.part4-sh2{
+    margin-bottom: 10px;
+}
+/* 第五部分 */
 .part5{
     height: 565px;
 }
