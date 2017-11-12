@@ -225,12 +225,26 @@ header{
 .part3-p1{
     color: #fff;
     font-size: 21px;
-    margin-bottom: 20px;
+    text-align: center;
+}
+
+.transition-line{
+    display: block;
+    width: 50px;
+    margin: 5px auto 0;
+    border-bottom: 2px solid #9f9f9f;
+    transition: width 1s ease;
+    border-color: #fff;
+}
+
+.part3-p1 span:hover ~ span{
+    width: 250px;
 }
 
 .part3-p2{
     color: #fff;
     font-size: 12px;
+    margin-top: 20px;
     margin-bottom: 50px;
 }
 
