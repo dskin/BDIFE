@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>任务七：JavaScript和树（一）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            background-color: #fff;
+        }
+
+        .wrap1 {
+            width: 900px;
+            height: 300px;
+            border: 2px solid #666;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .wrapAll {
+            width: 40%;
+            height: 60%;
+            border: 2px solid #666;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .controller {
+            width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap1 root">
+        <div class="wrapAll">
+            <div class="wrapAll">
+                <div class="wrapAll"></div>
+                <div class="wrapAll"></div>
+            </div>
+            <div class="wrapAll">
+                <div class="wrapAll"></div>
+                <div class="wrapAll"></div>
+            </div>
+        </div>
+        <div class="wrapAll">
+            <div class="wrapAll">
+                <div class="wrapAll"></div>
+                <div class="wrapAll"></div>
+            </div>
+            <div class="wrapAll">
+                <div class="wrapAll"></div>
+                <div class="wrapAll"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controller">
+        <input id="preBtn" type="button" value="前序遍历">
+        <input id="inBtn" type="button" value="中序遍历">
+        <input id="postBtn" type="button" value="后序遍历">
+    </div>
+
+    <script>
+        // 二叉树，前序遍历。先根节点，再左子树，后右子树。
+        // 中序遍历。先左子树，再根节点，后右子树。
+        // 后序遍历。先叶子后节点,从左往右。
+
+
+
+
+        // 事件监听，采用事件委托方式
+        var eventListener = function (root) {
+            controller.addEventListener('click', function (e) {
+                var ecID = e.target.id;
+                if (ecID == "preBtn") {
+                    preOrder(root);
+                }
+                else if (ecID == "inBtn") {
+                    inOrder(root);
+                }
+                else if (ecID == "postBtn") {
+                    postOrder(root);
+                }
+            }, false)
+        }
+
+        // 展示 
+        var show = function (node) {
+            node.style.backgroundColor = "tomato";
+            var intervalID = setInterval(
+                function (params) {
+                    node.style.backgroundColor = node.style.backgroundColor == "#fff" ? "tomato" : "#fff";
+                }
+            ,500)
+            intervalID();
+        }
+
+        // 前序遍历
+        var preOrder = function (root) {
+            if (root) {
+                show(root);
+                preOrder(root.children[0]);
+                preOrder(root.children[1]);
+            }
+        }
+
+        // 中序遍历
+        var inOrder = function (root) {
+            if (root) {
+                inOrder(root.children[0]);
+                show(root);
+                inOrder(root.children[1]);
+            }
+        }
+
+        // 后序遍历
+        var postOrder = function (root) {
+            if (root) {
+                postOrder(root.children[0]);
+                postOrder(root.children[1]);
+                show(root);
+            }
+        }
+
+        // 主函数，入口
+        var main = function (params) {
+            var doc = document;
+            frontBtn = doc.querySelector("#frontBtn");
+            middleBtn = doc.querySelector("#middleBtn");
+            backBtn = doc.querySelector("#preBtn");
+            controller = doc.querySelector(".controller");
+            root = doc.querySelector(".root");
+            rChildren = root.children;
+            timer = 0;
+            eventListener(root);
+        }
+
+        main();
+    </script>
+</body>
+
+</html>

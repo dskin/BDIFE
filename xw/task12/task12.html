@@ -71,11 +71,18 @@
             position: relative;
         }
 
+        @keyframes ma {/*---每图片切换有两个阶段：位移切换和静置。中间的效果可以任意定制----*/  
+            0%,30% {    left: 0px;       }  
+            35%,65% {   left: -400px;    }  
+            70%,100% {   left: -800px;    } 
+        }  
+
         li {
             float: left;
             width: 400px;
             height: 200px;
             animation: 0.5s slider-out linear;
+            animation: ma 12s ease-out infinite alternate;
         }
 
         li:first-child {
